@@ -322,9 +322,9 @@ public class BundleArchive {
     public boolean isDexOpted() {
     	return currentRevision.isDexOpted();
     }
-    
-    public void optDexFile() {
-    	currentRevision.optDexFile();
+
+    public void optDexFile(ClassLoader cl) {
+        currentRevision.optDexFile(cl);
     }
 
     public Class<?> findClass(String className, ClassLoader cl) throws ClassNotFoundException {

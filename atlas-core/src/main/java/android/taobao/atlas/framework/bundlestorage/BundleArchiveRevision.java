@@ -566,15 +566,15 @@ public class BundleArchiveRevision {
         return odexFile.exists() && odexFile.length() > 0;
     }
 
-    public /*synchronized*/ void optDexFile() {
+    public /*synchronized*/ void optDexFile(ClassLoader cl) {
 
         if (isDexOpted()){
             return;
         }
-        optDexFileLocked();
+        optDexFileLocked(cl);
     }
 
-    public synchronized void optDexFileLocked() {
+    public synchronized void optDexFileLocked(ClassLoader cl) {
 
         if (isDexOpted()) {
             return;
@@ -780,11 +780,11 @@ public class BundleArchiveRevision {
             }
 
             if (isDexOpted() == false){
-                optDexFile();
+                optDexFile(cl);
             }
 
             if (dexFile == null){
-                optDexFile();
+                optDexFile(cl);
             }
             if(Framework.isDeubgMode()){
                 clazz = findPatchClass(className,cl);

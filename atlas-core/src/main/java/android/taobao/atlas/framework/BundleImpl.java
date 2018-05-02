@@ -208,13 +208,10 @@
 
 package android.taobao.atlas.framework;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.taobao.atlas.bundleInfo.AtlasBundleInfoManager;
 import android.taobao.atlas.framework.bundlestorage.BundleArchive;
 import android.taobao.atlas.runtime.RuntimeVariables;
 import android.taobao.atlas.runtime.DelegateResources;
-import android.taobao.atlas.util.WrapperUtil;
 import android.taobao.atlas.util.log.impl.AtlasMonitor;
 import android.taobao.atlas.versionInfo.BaselineInfoManager;
 import android.util.Log;
@@ -227,10 +224,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public final class BundleImpl implements Bundle {
 
@@ -581,7 +576,7 @@ public final class BundleImpl implements Bundle {
     }
 
     public /*synchronized*/ void optDexFile() {
-        this.getArchive().optDexFile();
+        this.getArchive().optDexFile(classloader);
     }
 
     /**
