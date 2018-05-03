@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.taobao.atlas.remote.IRemote;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.taobao.secondbundle.R;
 import com.taobao.secondbundlelibrary.SecondbundleShareActivity;
 
 /**
@@ -20,7 +19,7 @@ import com.taobao.secondbundlelibrary.SecondbundleShareActivity;
  * Use the {@link PlusOneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlusOneFragment extends Fragment {
+public class PlusOneFragment extends Fragment implements IRemote {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +31,7 @@ public class PlusOneFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-//    private PlusOneButton mPlusOneButton;
+    //    private PlusOneButton mPlusOneButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,8 +67,7 @@ public class PlusOneFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plus_one, container, false);
         view.findViewById(R.id.plus_one_button).setOnClickListener(new View.OnClickListener() {
@@ -89,7 +87,7 @@ public class PlusOneFragment extends Fragment {
         super.onResume();
 
         // Refresh the state of the +1 button each time the activity receives focus.
-//        mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
+        //        mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -103,10 +101,9 @@ public class PlusOneFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+            mListener = (OnFragmentInteractionListener)context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -131,4 +128,13 @@ public class PlusOneFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public Bundle call(String commandName, Bundle args, IResponse callback) {
+        return null;
+    }
+
+    @Override
+    public <T> T getRemoteInterface(Class<T> interfaceClass, Bundle args) {
+        return null;
+    }
 }
